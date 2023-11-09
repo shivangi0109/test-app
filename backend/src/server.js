@@ -7,6 +7,7 @@ const PORT = 8080;
 
 const app = express();
 const { createToken } = require('./utils');
+const { verifyToken } = require('./middlewares');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,7 +46,7 @@ app.post("/login", (req, res) => {
   return res.status(200).json({ message: 'Login successfully!', token: token});
 });
 
-app.get("/dogs", (req, res) => {
+app.get("/dogs", verifyToken, (req, res) => {
   res.json(data);
 })
 
