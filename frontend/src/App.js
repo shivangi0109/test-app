@@ -1,4 +1,7 @@
 import NavigationBar from './components/NavigationBar';
+// import Login from './components/Login';
+// import PetsProfile from './components/PetsProfile';
+import Main from './components/Main';
 import './App.css';
 
 function App() {
@@ -6,7 +9,9 @@ function App() {
     <div className="App">
       <NavigationBar />
       <header className="App-header">
-        <h1>Auth with JWT</h1>
+        <Main />
+        {/* <Login /> */}
+        {/* <PetsProfile /> */}
       </header>
     </div>
   );
