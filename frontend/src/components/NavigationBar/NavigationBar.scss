@@ -1,0 +1,14 @@
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+/* Custom styles for navbar background color */
+.navbar {
+  background-color:blueviolet !important;
+}
+
+/* Custom styles for buttons */
+.btn {
+  color: #fff !important;
+  background-color: pink !important;
+  border-color: green !important;
+}
