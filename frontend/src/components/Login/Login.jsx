@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useJwt } from 'react-jwt';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
@@ -8,6 +9,7 @@ const Login = () => {
   const [password, setPasword] = useState('');
 
   const { decodedToken } = useJwt(token);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ const Login = () => {
         console.log(response);
         const jwtToken = response.data.token;
         setToken(jwtToken);
+        navigate("/");
       })
       .catch((error) => console.log(error))
   }
