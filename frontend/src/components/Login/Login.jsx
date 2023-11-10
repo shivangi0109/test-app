@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useJwt } from 'react-jwt';
 import axios from 'axios';
 
 const Login = () => {
@@ -6,11 +7,27 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPasword] = useState('');
 
+  const { decodedToken } = useJwt(token);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:8080/login', { email, password })
       .then((response) => {
-        console.log(response)
+        console.log(response);
+        const jwtToken = response.data.token;
+        setToken(jwtToken);
+      })
+      .catch((error) => console.log(error))
+  }
+
+  const fetchDogs = () => {
+    axios.get('http://localhost:8080/dogs', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+      .then((response) => {
+        console.log('Dogs response:', response)
       })
       .catch((error) => console.log(error))
   }
@@ -19,7 +36,7 @@ const Login = () => {
     <>
       <h1>Login</h1>
 
-      { !token && (
+      { !decodedToken && (
         <form onSubmit={handleSubmit}>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -50,6 +67,11 @@ const Login = () => {
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
       )}
+
+      { decodedToken && (<>
+        <h1>Dogs should appear here 🐶</h1>
+        <button onClick={fetchDogs}>Fetch dogs!</button>
+      </>) }
 
     </>
    );
