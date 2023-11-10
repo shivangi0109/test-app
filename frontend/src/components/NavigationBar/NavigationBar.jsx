@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 const NavigationBar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary"> 
         <div className="container-fluid">
           <a className="navbar-brand" href="/">Navbar w/ text</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +24,7 @@ const NavigationBar = () => {
             <span className="navbar-text">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">Login</a>
+                  <Link to="/login" className="nav-link active" aria-current="page">Login</Link>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="/">Signup</a>

@@ -4,12 +4,32 @@ import './index.css';
 import App from './App';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import './custom.scss';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Main from './components/Main';
+import Login from './components/Login';
 import './components/NavigationBar/NavigationBar.scss';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Main />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      }
+    ]
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
